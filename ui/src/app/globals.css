@@ -35,6 +35,19 @@ a {
   text-decoration: none;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.page-container {
+  width: 33.33vw; /* one-third of the viewport width */
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
