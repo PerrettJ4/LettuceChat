@@ -11,18 +11,16 @@ import { FaUserCircle } from "react-icons/fa";
 
 export default function Home() {
   const { user, setUser } = useUser();
-
-  const handleSelect = (user) => {
-    setUser(user);
-  };
-
   const router = useRouter();
 
+  const handleSelect = async (user) => {
+    await setUser(user);
+    router.push("/home");
+  };
+
   useEffect(() => {
-    if (user) {
-      router.push("/home");
-    }
-  }, [user]);
+    setUser(null);
+  }, []);
 
   return (
     <div>
