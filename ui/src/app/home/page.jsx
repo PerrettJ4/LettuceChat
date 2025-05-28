@@ -2,6 +2,7 @@
 
 import { useGroups } from "@/app/hooks/useGroups";
 import { useUser } from "@/app/context/UserContext";
+import Link from "next/link";
 
 export default function Home() {
   const { user } = useUser();
@@ -25,9 +26,9 @@ export default function Home() {
         }}
       >
         {groups.map((group) => (
-          <a key={group.id} href={`/chat/${group.id}`}>
-            <a>{group.group_name}</a>
-          </a>
+          <Link key={group.id} href={`/chat/${group.id}`}>
+            <p>{group.group_name}</p>
+          </Link>
         ))}
       </ul>
     </div>

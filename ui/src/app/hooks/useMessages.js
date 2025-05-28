@@ -11,9 +11,9 @@ export function useMessages(id, limit = 20, since = null) {
       setLoading(true);
       try {
         // Build query params dynamically
-        // const params = new URLSearchParams({ groupId: id });
-        // if (limit) params.append("limit", limit);
-        // if (since) params.append("since", since);
+        const params = new URLSearchParams({ groupId: id });
+        if (limit) params.append("limit", limit);
+        if (since) params.append("since", since);
 
         const res = await fetch(`http://localhost:4000/api/groups/${id}/chats`);
         if (!res.ok) throw new Error("Failed to fetch messages");
@@ -31,5 +31,9 @@ export function useMessages(id, limit = 20, since = null) {
     fetchMessages();
   }, [id, limit, since]);
 
-  return { messages, loading };
+  const handleAddMessage = (msg) => {
+    setMessages((prev) => [...prev, msg]); // You can also sort, dedupe, etc. here
+  };
+
+  return { messages, loading, handleAddMessage };
 }

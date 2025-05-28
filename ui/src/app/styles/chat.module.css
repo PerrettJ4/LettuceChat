@@ -1,0 +1,45 @@
+/* ChatInput.module.css */
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-top: 1px solid #ccc;
+  padding-top: 0.5rem;
+  margin-top: auto;
+  margin-top: 50px;
+}
+
+.textarea {
+  flex: 1;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 14px;
+  outline: none;
+}
+
+.textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

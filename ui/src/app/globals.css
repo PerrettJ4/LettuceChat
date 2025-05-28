@@ -47,6 +47,7 @@ body {
   min-width: 400px; /* minimum width of 400px */
   min-height: 100vh;
   box-sizing: border-box;
+  margin-top: 100px;
 }
 
 @media (prefers-color-scheme: dark) {
