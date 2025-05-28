@@ -1,8 +1,7 @@
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  connectionString:
-    "postgresql://postgres:password@localhost:5432/spruce_database",
+  connectionString: process.env.DATABASE_URL,
 });
 
 module.exports = pool;
