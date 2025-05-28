@@ -3,6 +3,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { UserProvider } from "@/app/context/UserContext";
+import { OnlineStatusProvider } from "@/app/context/OnlineStatusContext";
+import { OnlineToggleSwitch } from "@/app/components/OnlineToggleSwitch";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +25,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <UserProvider>
-          <div className="page-container">{children}</div>
+          <OnlineStatusProvider>
+            <div className="page-container" style={{ paddingBottom: 50 }}>
+              {children}
+            </div>
+            <OnlineToggleSwitch />
+          </OnlineStatusProvider>
         </UserProvider>
       </body>
     </html>

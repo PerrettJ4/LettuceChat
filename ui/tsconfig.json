@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/pages/page.jsxx"
+    "src/pages/page.jsxx",
+    "src/app/context/OnlineStatusContext.js"
   ],
   "exclude": ["node_modules"]
 }

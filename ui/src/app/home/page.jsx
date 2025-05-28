@@ -2,18 +2,21 @@
 
 import { useGroups } from "@/app/hooks/useGroups";
 import { useUser } from "@/app/context/UserContext";
+
 import Link from "next/link";
 
 import { FaPlus } from "react-icons/fa";
 import Header from "../components/Header";
 import { useRouter } from "next/navigation";
+import { useOnlineStatus } from "@/app/context/OnlineStatusContext";
 
 export default function Home() {
   const { user, setUser } = useUser();
+  const { isOnline } = useOnlineStatus();
   const userId = user?.id;
 
   const router = useRouter();
-  const { groups, loading, error } = useGroups(userId);
+  const { groups, loading, error } = useGroups(userId, isOnline);
 
   if (loading) return <p>Loading groups...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -45,7 +48,12 @@ export default function Home() {
         }}
       >
         {groups.map((group) => (
-          <Link key={group.id} href={`/chat/${group.id}`}>
+          <Link
+            key={group.id}
+            href={`/chat/${group.id}?groupName=${encodeURIComponent(
+              group.group_name
+            )}`}
+          >
             <p>{group.group_name}</p>
           </Link>
         ))}

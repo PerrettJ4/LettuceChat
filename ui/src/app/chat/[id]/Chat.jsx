@@ -1,6 +1,7 @@
 "use client";
 
 import { useUser } from "@/app/context/UserContext";
+import { useOnlineStatus } from "@/app/context/OnlineStatusContext";
 import { useSendMessage } from "@/app/hooks/useSendMessages";
 import { useMessages } from "@/app/hooks/useMessages";
 import { useCallback, useState } from "react";
@@ -11,26 +12,31 @@ import { useDeleteGroup } from "../../hooks/useDeleteGroup";
 import { useRouter } from "next/navigation";
 
 export default function Chat({ id }) {
-  console.log("Client component received id:", id); // Debug: should log correct id
   const { user } = useUser();
   const router = useRouter();
+  const { isOnline } = useOnlineStatus();
 
-  const { messages, loading, handleAddMessage } = useMessages(id);
-  const { sendMessage, sending } = useSendMessage({ handleAddMessage });
+  const { messages, loading, handleAddMessage } = useMessages(
+    id,
+    null,
+    null,
+    isOnline
+  );
+  const { sendMessage, sending } = useSendMessage(
+    { handleAddMessage },
+    isOnline
+  );
   const { deleteGroup } = useDeleteGroup();
 
   const [newMessage, setNewMessage] = useState("");
 
   const handleSubmit = async () => {
     if (!newMessage.trim()) return;
-    console.log({
-      groupId: id,
-      userId: user?.id,
-      content: newMessage,
-    });
+
     const success = await sendMessage({
       groupId: id,
-      userId: user?.id,
+      userId: user.id,
+      userDisplayName: user.displayName,
       content: newMessage,
     });
 
