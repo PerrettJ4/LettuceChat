@@ -3,17 +3,21 @@
 import { useUser } from "@/app/context/UserContext";
 import { useSendMessage } from "@/app/hooks/useSendMessages";
 import { useMessages } from "@/app/hooks/useMessages";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import styles from "@/app/styles/chat.module.css";
 import { FaTrash } from "react-icons/fa";
 import Header from "../../components/Header";
+import { useDeleteGroup } from "../../hooks/useDeleteGroup";
+import { useRouter } from "next/navigation";
 
 export default function Chat({ id }) {
   console.log("Client component received id:", id); // Debug: should log correct id
   const { user } = useUser();
+  const router = useRouter();
 
   const { messages, loading, handleAddMessage } = useMessages(id);
   const { sendMessage, sending } = useSendMessage({ handleAddMessage });
+  const { deleteGroup } = useDeleteGroup();
 
   const [newMessage, setNewMessage] = useState("");
 
@@ -42,11 +46,24 @@ export default function Chat({ id }) {
     }
   };
 
+  const handleDeleteGroup = useCallback(async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this group?"
+    );
+    if (!confirmed) return;
+
+    const success = await deleteGroup(id);
+    if (success) {
+      alert("Group deleted!");
+      router.back();
+    }
+  }, [id]);
+
   return (
     <div>
       <Header
         title={`Chat for Group ${id}`}
-        onRightIcon={() => console.log("toast")}
+        onRightIcon={handleDeleteGroup}
         RightIcon={FaTrash}
       ></Header>
       {loading && <p style={{ marginTop: "20px" }}>Loading messages...</p>}

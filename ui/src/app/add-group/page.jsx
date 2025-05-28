@@ -111,40 +111,39 @@ export default function GroupCreator() {
             );
           })}
         </ul>
+        <button
+          onClick={handleSubmit}
+          aria-label="Create Group"
+          style={{
+            position: "relative",
+            bottom: 20,
+            right: 0,
+            top: "50px",
+            backgroundColor: "#0070f3",
+            border: "none",
+            borderRadius: "50%",
+            width: 56,
+            height: 56,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "white",
+            fontSize: 24,
+            cursor: "pointer",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+            transition: "background-color 0.2s",
+            marginLeft: "auto",
+          }}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = "#005bb5")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = "#0070f3")
+          }
+        >
+          <FaArrowRight />
+        </button>
       </main>
-
-      {/* Fixed bottom right submit button */}
-      <button
-        onClick={handleSubmit}
-        aria-label="Create Group"
-        style={{
-          position: "relative",
-          bottom: 20,
-          right: 0,
-          backgroundColor: "#0070f3",
-          border: "none",
-          borderRadius: "50%",
-          width: 56,
-          height: 56,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
-          fontSize: 24,
-          cursor: "pointer",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-          transition: "background-color 0.2s",
-          marginLeft: "auto",
-        }}
-        onMouseEnter={(e) =>
-          (e.currentTarget.style.backgroundColor = "#005bb5")
-        }
-        onMouseLeave={(e) =>
-          (e.currentTarget.style.backgroundColor = "#0070f3")
-        }
-      >
-        <FaArrowRight />
-      </button>
     </>
   );
 }
