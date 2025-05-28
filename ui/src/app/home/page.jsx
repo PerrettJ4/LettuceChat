@@ -23,13 +23,16 @@ export default function Home() {
     await setUser(null);
     router.push("/");
   };
+  const onRightIcon = async () => {
+    router.push("/add-group");
+  };
 
   return (
     <div>
       <Header
         title={`LettuceChat`}
         onBack={onBack}
-        onRightIcon={() => console.log("toast")}
+        onRightIcon={onRightIcon}
         RightIcon={FaPlus}
       ></Header>
 

@@ -42,9 +42,6 @@ export default function Chat({ id }) {
     }
   };
 
-  if (loading) return <p>Loading messages...</p>;
-  if (!messages?.length) return <p>No messages found for group {id}</p>;
-
   return (
     <div>
       <Header
@@ -52,7 +49,10 @@ export default function Chat({ id }) {
         onRightIcon={() => console.log("toast")}
         RightIcon={FaTrash}
       ></Header>
-
+      {loading && <p style={{ marginTop: "20px" }}>Loading messages...</p>}
+      {!loading && !messages?.length && (
+        <p style={{ marginTop: "20px" }}>Spruce it up, send a message :D</p>
+      )}
       <ul
         style={{
           flexGrow: 1,
