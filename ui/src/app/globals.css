@@ -44,6 +44,7 @@ body {
 
 .page-container {
   width: 33.33vw; /* one-third of the viewport width */
+  min-width: 400px; /* minimum width of 400px */
   min-height: 100vh;
   box-sizing: border-box;
 }
