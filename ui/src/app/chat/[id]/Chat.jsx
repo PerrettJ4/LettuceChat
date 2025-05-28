@@ -5,6 +5,8 @@ import { useSendMessage } from "@/app/hooks/useSendMessages";
 import { useMessages } from "@/app/hooks/useMessages";
 import { useState } from "react";
 import styles from "@/app/styles/chat.module.css";
+import { FaTrash } from "react-icons/fa";
+import Header from "../../components/Header";
 
 export default function Chat({ id }) {
   console.log("Client component received id:", id); // Debug: should log correct id
@@ -45,7 +47,12 @@ export default function Chat({ id }) {
 
   return (
     <div>
-      <h1>Chat for Group {id}</h1>
+      <Header
+        title={`Chat for Group ${id}`}
+        onRightIcon={() => console.log("toast")}
+        RightIcon={FaTrash}
+      ></Header>
+
       <ul
         style={{
           flexGrow: 1,
@@ -70,7 +77,7 @@ export default function Chat({ id }) {
             >
               <div
                 style={{
-                  backgroundColor: isMine ? "lightgreen" : "grey",
+                  backgroundColor: isMine ? "green" : "grey",
                   padding: "8px 12px",
                   borderRadius: "12px",
                   maxWidth: "60%",
