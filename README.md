@@ -22,7 +22,7 @@ But the reasoning and logic is there for polling and the use of local storage an
 - Group names not present in chat, only ID
 - tiny blip when reloading messages after coming back online
 - Flickering re-renders due to polling
-- Going in and out of chat in offline mode won't render chat
+- Going in and out of chat in offline mode won't render any pending messages added to chat
 
 ---
 
