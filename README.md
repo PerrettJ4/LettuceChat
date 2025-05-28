@@ -3,7 +3,7 @@
 Okay yeah I spent 5 hours on this (I did have lunch).<br/>
 This application is built with Node.js, PostgreSQL, and Next.js, and leverages localStorage to enable some offline functionality.
 
-and it's not perfect but it does:
+It's not perfect but it does:
 
 - ✅ Users should be able to add and remove chat groups.  
 - ✅ Users should be able to send messages to individual chat groups.  
